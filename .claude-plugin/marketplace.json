@@ -1,8 +1,7 @@
 {
   "name": "s-marketplace",
   "owner": {
-    "name": "Tino",
-    "email": ""
+    "name": "Tino"
   },
   "plugins": [
     {
@@ -13,8 +12,6 @@
       "author": {
         "name": "Tino"
       },
-      "homepage": "",
-      "repository": "",
       "license": "MIT",
       "keywords": ["development", "workflow", "automation", "productivity"]
     }
