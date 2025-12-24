@@ -7,6 +7,5 @@
   },
   "license": "MIT",
   "keywords": ["development", "workflow", "automation", "productivity"],
-  "commands": "./commands/",
-  "hooks": "./hooks/hooks.json"
+  "commands": "./commands/"
 }
