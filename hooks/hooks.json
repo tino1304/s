@@ -47,20 +47,11 @@
         ]
       },
       {
-        "matcher": "^@pm\\s",
+        "matcher": "^@tech-lead\\s",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py pm"
-          }
-        ]
-      },
-      {
-        "matcher": "^@tester\\s",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py tester"
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py tech-lead"
           }
         ]
       }
@@ -72,6 +63,15 @@
           {
             "type": "command",
             "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/enforce-write.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/enforce-task-files.py"
           }
         ]
       }

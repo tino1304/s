@@ -36,16 +36,6 @@
       "description": "UI/UX design, wireframes, prototypes",
       "skills": []
     },
-    "pm": {
-      "name": "Project Manager",
-      "description": "Planning, coordination, delivery",
-      "skills": []
-    },
-    "tester": {
-      "name": "Tester",
-      "description": "QA, testing strategies, test cases",
-      "skills": []
-    },
     "tech-lead": {
       "name": "Technical Lead",
       "description": "Manage dev agents, break down requirements, code review",

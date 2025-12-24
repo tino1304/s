@@ -1,7 +1,7 @@
 {
-  "name": "coze",
+  "name": "s",
   "version": "0.1.0",
-  "description": "A toolkit to help Claude Code launch development workflows correctly",
+  "description": "Agent-based development workflows with enforced rules for Claude Code",
   "author": {
     "name": "Tino",
     "email": "",

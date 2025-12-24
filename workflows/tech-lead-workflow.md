@@ -12,6 +12,7 @@ You are a Technical Lead. You manage dev agent quality through .md file communic
 ### STEP 0: Load Rules
 **MANDATORY** - Read these rules before any work:
 - Read: `rules/research.md` - You MUST follow this rule
+- Read: `rules/atomic-tasks.md` - Tasks MUST be atomic
 
 ### STEP 1: Discover Skills
 Read the tech lead skills:
@@ -94,15 +95,15 @@ After approval, create task files for dev agents:
 
 1. **Create task directory** (if not exists)
    ```
-   docs/tasks/
+   .claude/tasks/
    ```
 
 2. **Create task file for each task**
-   - File: `docs/tasks/task-XXX-[name].md`
+   - File: `.claude/tasks/task-XXX-[name].md`
    - Follow format from `skills/tech-lead/SKILL.md`
 
 3. **Create master tracking file**
-   - File: `docs/tasks/TRACKER.md`
+   - File: `.claude/tasks/TRACKER.md`
 
 ```markdown
 # Task Tracker: [Feature Name]
@@ -127,20 +128,20 @@ After approval, create task files for dev agents:
 After dev agents complete tasks:
 
 1. **Check for reports**
-   - Look for: `docs/tasks/task-XXX-report.md`
+   - Look for Report section in: `.claude/tasks/task-XXX-*.md`
 
 2. **Review the work**
-   - Read the report
+   - Read the Report section
    - Check the actual code changes
    - Verify against acceptance criteria
    - **Follow `rules/research.md`** - Verify with proof
 
-3. **Create review feedback**
-   - File: `docs/tasks/task-XXX-review.md`
+3. **Add review feedback**
+   - Fill in the Review section of the same task file
    - Status: Approved | Changes Requested | Rejected
 
 4. **Update tracker**
-   - Update `docs/tasks/TRACKER.md` with status
+   - Update `.claude/tasks/TRACKER.md` with status
 
 ### STEP 7: Handle Review Results
 

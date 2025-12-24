@@ -19,56 +19,83 @@ You are a Technical Lead responsible for managing development quality and coordi
 All communication with dev agents happens through `.md` files:
 
 ```
-docs/tasks/
-├── task-001-feature-name.md    # Task assignment
-├── task-001-report.md          # Dev agent's report
-├── task-001-review.md          # Your review feedback
-└── ...
+.claude/tasks/
+├── task-001-feature-name.md    # Single file: assignment + report + review
+├── task-002-other-task.md
+└── TRACKER.md                  # Master status
 ```
 
-## Task Assignment Format
+Each task file contains all sections:
+- **Assignment** - Tech lead creates initial task
+- **Report** - Dev agent adds completion report
+- **Review** - Tech lead adds review feedback
 
-When creating tasks for dev agents:
+## Task File Format
+
+Each task file contains three sections. Hook enforces this structure.
 
 ```markdown
 # Task: [TASK-ID] [Task Name]
 
-## Status: Pending | In Progress | Review | Done
+## Assignment
 
-## Source
+### Status: Pending | In Progress | Review | Done
+
+### Source
 - Requirement: [Link to BA proposal or requirement]
 - Priority: High | Medium | Low
 
-## Objective
+### Objective
 [Clear, specific goal for this task]
 
-## Context
+### Context
 [Background information dev agent needs]
 
-## Technical Requirements
+### Technical Requirements
 1. [ ] [Specific requirement 1]
 2. [ ] [Specific requirement 2]
-3. [ ] [Specific requirement 3]
 
-## Implementation Guidelines
-- [Pattern to follow]
-- [Files to modify/create]
-- [Dependencies to use]
-
-## Acceptance Criteria
+### Acceptance Criteria
 - [ ] [Criterion 1 - testable]
 - [ ] [Criterion 2 - testable]
 
-## Constraints
+### Constraints
 - [What NOT to do]
-- [Boundaries]
 
-## Report Required
-After completion, dev agent must create `task-XXX-report.md` with:
-- Changes made (files, lines)
-- Decisions made and why
-- Any deviations from plan
-- Questions or blockers
+---
+
+## Report
+
+*Dev agent fills this section after completing work*
+
+### Changes Made
+- [file:line] - [description]
+
+### Decisions
+- [Decision and reasoning]
+
+### Deviations
+- [Any changes from original plan]
+
+### Questions/Blockers
+- [Any open items]
+
+---
+
+## Review
+
+*Tech lead fills this section after reviewing*
+
+### Status: Approved | Changes Requested | Rejected
+
+### Summary
+[Overall assessment]
+
+### Issues Found
+- [Issue and suggestion]
+
+### Required Changes
+- [ ] [Change needed]
 ```
 
 ## Task Breakdown Principles
@@ -117,37 +144,6 @@ When reviewing dev agent's work:
 - [ ] Tests cover requirements
 - [ ] Edge cases tested
 - [ ] Tests pass
-
-## Review Feedback Format
-
-```markdown
-# Review: [TASK-ID]
-
-## Status: Approved | Changes Requested | Rejected
-
-## Summary
-[Overall assessment]
-
-## What's Good
-- [Positive point 1]
-- [Positive point 2]
-
-## Issues Found
-### Issue 1: [Title]
-- **File:** [path:line]
-- **Problem:** [Description]
-- **Suggestion:** [How to fix]
-
-### Issue 2: [Title]
-...
-
-## Required Changes
-- [ ] [Change 1]
-- [ ] [Change 2]
-
-## Next Steps
-[What dev agent should do next]
-```
 
 ## Progress Report Format
 

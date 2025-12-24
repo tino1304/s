@@ -11,13 +11,13 @@ import sys
 import re
 
 # Commands that need LLM actions (trigger refinement)
+# Plugin name is "s", commands are "dev", "ba", etc.
+# When installed: /s:dev, /s:ba, /s:design, /s:tech-lead
 COZE_LLM_COMMANDS = [
-    "coze-ba",
-    "coze-dev",
-    "coze-design",
-    "coze-pm",
-    "coze-tester",
-    "coze-tech-lead"
+    "s:ba",
+    "s:dev",
+    "s:design",
+    "s:tech-lead"
 ]
 
 # Skip refinement for these patterns

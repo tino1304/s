@@ -1,14 +1,14 @@
 {
-  "name": "coze-marketplace",
+  "name": "s-marketplace",
   "owner": {
     "name": "Tino",
     "email": ""
   },
   "plugins": [
     {
-      "name": "coze",
+      "name": "s",
       "source": "./",
-      "description": "A toolkit to help Claude Code launch development workflows correctly",
+      "description": "Agent-based development workflows with enforced rules for Claude Code",
       "version": "0.1.0",
       "author": {
         "name": "Tino"
