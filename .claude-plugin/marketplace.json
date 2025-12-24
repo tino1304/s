@@ -1,0 +1,22 @@
+{
+  "name": "coze-marketplace",
+  "owner": {
+    "name": "Tino",
+    "email": ""
+  },
+  "plugins": [
+    {
+      "name": "coze",
+      "source": "./",
+      "description": "A toolkit to help Claude Code launch development workflows correctly",
+      "version": "0.1.0",
+      "author": {
+        "name": "Tino"
+      },
+      "homepage": "",
+      "repository": "",
+      "license": "MIT",
+      "keywords": ["development", "workflow", "automation", "productivity"]
+    }
+  ]
+}

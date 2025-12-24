@@ -1,0 +1,65 @@
+{
+  "roles": {
+    "dev": {
+      "name": "Developer",
+      "description": "Software development tasks",
+      "skills": [
+        {
+          "name": "frontend-react",
+          "path": "dev/frontend-react/SKILL.md",
+          "keywords": [
+            "react", "component", "hook", "usestate", "useeffect", "typescript", "tsx", "jsx",
+            "frontend", "ui", "button", "form", "modal", "tailwind", "css", "styled",
+            "zustand", "redux", "context", "tanstack", "query", "mutation",
+            "vitest", "testing-library", "jest", "test"
+          ]
+        }
+      ]
+    },
+    "ba": {
+      "name": "Business Analyst",
+      "description": "Requirements, user stories, documentation",
+      "skills": [
+        {
+          "name": "business-analyst",
+          "path": "ba/SKILL.md",
+          "keywords": [
+            "requirement", "user story", "acceptance criteria", "proposal",
+            "feature", "scope", "stakeholder", "analysis", "document",
+            "specification", "use case", "workflow", "process"
+          ]
+        }
+      ]
+    },
+    "design": {
+      "name": "Designer",
+      "description": "UI/UX design, wireframes, prototypes",
+      "skills": []
+    },
+    "pm": {
+      "name": "Project Manager",
+      "description": "Planning, coordination, delivery",
+      "skills": []
+    },
+    "tester": {
+      "name": "Tester",
+      "description": "QA, testing strategies, test cases",
+      "skills": []
+    },
+    "tech-lead": {
+      "name": "Technical Lead",
+      "description": "Manage dev agents, break down requirements, code review",
+      "skills": [
+        {
+          "name": "tech-lead",
+          "path": "tech-lead/SKILL.md",
+          "keywords": [
+            "tech lead", "technical lead", "manage", "dev agent", "breakdown",
+            "task", "review", "code review", "quality", "coordinate",
+            "assign", "track", "report", "verify"
+          ]
+        }
+      ]
+    }
+  }
+}
