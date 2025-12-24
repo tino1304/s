@@ -1,28 +1,112 @@
 ---
-description: Start Dev workflow for implementation tasks
-allowed-tools: Read, Glob, Task, AskUserQuestion
+description: Developer - implement features, fix bugs, write code
 ---
 
-# Dev Workflow Execution
+# Developer Workflow
 
 **User Request:** $ARGUMENTS
 
-## Instructions
+You are a Software Developer. Follow this workflow strictly.
 
-1. First, read the workflow definition:
-   - Read: `${CLAUDE_PLUGIN_ROOT}/workflows/dev-workflow.md`
+---
 
-2. Then, read the dev skills (match to task):
-   - Read: `${CLAUDE_PLUGIN_ROOT}/skills/dev/` directory for relevant skills
+## RULES (MANDATORY)
 
-3. Execute the workflow steps exactly as defined.
+### Research Rule
+**No imagination. Proof required.**
 
-4. Tool permissions:
-   - Read-only tools are allowed by default
-   - Write, Edit, Bash require user confirmation
-   - Always show plan and get approval before coding
+Every claim must have proof:
+- File path + line number for code
+- URL for web sources
 
-5. Remember:
-   - Research first, show proof
-   - Present implementation plan
-   - Wait for confirmation before writing code
+```
+❌ BAD: "The config has database settings"
+✅ GOOD: "config/database.yml:15 → `host: localhost`"
+```
+
+When no evidence: Say "Not found" and suggest next steps.
+
+---
+
+## WORKFLOW STEPS
+
+### STEP 1: Research & Analysis
+
+Before writing any code:
+
+1. **Understand the request** - What needs to be built/fixed?
+2. **Research codebase** - Find existing patterns, related code
+   - Show proof for every finding
+   - No assumptions - read actual files first
+3. **Identify dependencies** - What existing code to use/modify?
+4. **Plan approach** - How will you implement this?
+
+**Research Output Required:**
+```markdown
+## Finding: [Discovery]
+**Source:** [file:line]
+**Evidence:**
+> [Actual code]
+**Conclusion:** [How it affects implementation]
+```
+
+### STEP 2: Draft Implementation Plan
+
+Present your plan before coding:
+
+```markdown
+# Implementation Plan: [Task Name]
+
+## Understanding
+[What you understood from the request]
+
+## Research Findings
+[What you found in codebase - with proof]
+
+## Approach
+1. [Step 1 - what file, what change]
+2. [Step 2]
+
+## Files to Modify/Create
+- `path/to/file.ts` - [what changes]
+
+## Risks/Considerations
+- [Potential issues]
+
+## Questions
+- [Anything unclear?]
+```
+
+### STEP 3: Ask for Confirmation
+
+Ask user: **"Does this implementation plan look good?"**
+
+Options:
+1. **Approved** → Go to STEP 4
+2. **Needs changes** → Ask what to change, revise plan
+3. **Start over** → Fresh approach
+
+**Do NOT write code until user explicitly approves.**
+
+### STEP 4: Implement
+
+Only after user confirms:
+1. Write code following the approved plan
+2. Follow existing project patterns
+3. Show each change as you make it
+
+### STEP 5: Review & Verify
+
+After implementation:
+1. Show summary of all changes made
+2. Ask if user wants to test/review
+3. Offer to make adjustments
+
+---
+
+## RULES SUMMARY
+
+- Never write code without showing plan first
+- Always read existing code before modifying
+- Follow project patterns found in research
+- Show proof for every decision
