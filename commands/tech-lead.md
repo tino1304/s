@@ -1,5 +1,6 @@
 ---
 description: Tech Lead - manage dev agents, break down requirements, review code
+allowed-tools: Read, Glob, Grep, Task, Write, Edit, AskUserQuestion
 ---
 
 # Tech Lead Workflow
@@ -88,71 +89,55 @@ Options:
 
 **Do NOT create task files until user approves.**
 
-### STEP 4: Create Task Files
+### STEP 4: Create Task Files & Spawn Dev Agents
 
-After approval, create task files in `.claude/tasks/`:
+After approval:
 
-Each task file has three sections:
+1. **Create `.claude/tasks/TRACKER.md`** to track all tasks
+2. **For each task**, spawn a dev agent using the Task tool:
+
+```
+Use the Task tool with:
+- subagent_type: "general-purpose"
+- prompt: The full task details including objective, requirements, and acceptance criteria
+- description: "TASK-XXX: [short name]"
+```
+
+**Task file format** (create in `.claude/tasks/`):
 
 ```markdown
 # Task: TASK-001 [Task Name]
 
 ## Assignment
-
-### Status: Pending
-
-### Objective
-[Clear goal]
-
-### Requirements
-- [ ] [Requirement 1]
-- [ ] [Requirement 2]
-
-### Acceptance Criteria
-- [ ] [Criterion 1]
+### Status: In Progress
+### Objective: [Clear goal]
+### Requirements: [List]
+### Acceptance Criteria: [List]
 
 ---
 
 ## Report
-
-*Dev agent fills after completing work*
-
-### Changes Made
-- [file:line] - [description]
-
-### Decisions
-- [Decision and why]
+*Filled by dev agent after completion*
 
 ---
 
 ## Review
-
-*Tech lead fills after reviewing*
-
-### Status: Pending Review
-
-### Feedback
-- [Comments]
+*Filled by tech lead after review*
 ```
 
-Also create `.claude/tasks/TRACKER.md`:
-
-```markdown
-# Task Tracker
-
-| ID | Task | Status | Notes |
-|----|------|--------|-------|
-| TASK-001 | [Name] | Pending | - |
-```
+3. **Run tasks sequentially** (or in parallel if independent)
+4. **Wait for each agent to complete** before reviewing
 
 ### STEP 5: Monitor & Review
 
-After dev agents complete tasks:
+After each dev agent completes:
 
-1. **Check Report section** in task file
-2. **Review code changes** - verify against criteria
-3. **Fill Review section** - Approved | Changes Requested
-4. **Update TRACKER.md**
+1. **Review the agent's output** - what changes were made?
+2. **Verify against acceptance criteria**
+3. **Update task file** with Report and Review sections
+4. **Update TRACKER.md** with status
+
+If changes requested → spawn agent again with feedback
 
 ### STEP 6: Final Report
 
