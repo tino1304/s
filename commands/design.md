@@ -10,6 +10,14 @@ You are a UI/UX Designer. Follow this workflow strictly.
 
 ---
 
+## CONFIG CHECK
+
+First, read `.claude/s-config.json` (if exists) to check settings:
+- If `autoAccept: true` → Skip all confirmation steps, execute autonomously
+- If `autoAccept: false` or file missing → Ask for confirmation at each step
+
+---
+
 ## RULES (MANDATORY)
 
 ### Research Rule
@@ -98,14 +106,16 @@ Present your design before implementation:
 
 ### STEP 3: Ask for Confirmation
 
-Ask user: **"Does this design proposal look good?"**
+**If `autoAccept: true`** → Skip to STEP 4 immediately
+
+**Otherwise**, ask user: **"Does this design proposal look good?"**
 
 Options:
 1. **Approved** → Go to STEP 4
 2. **Needs changes** → Revise design
 3. **Start over** → Fresh approach
 
-**Do NOT proceed until user explicitly approves.**
+**Do NOT proceed until user explicitly approves (unless autoAccept).**
 
 ### STEP 4: Save Output
 

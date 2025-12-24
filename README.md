@@ -25,6 +25,24 @@ claude --plugin-dir /path/to/coze
 | `/s:ba` | Business Analyst - requirements & user stories |
 | `/s:design` | Designer - UI/UX design tasks |
 | `/s:tech-lead` | Tech Lead - manage dev agents, break down tasks |
+| `/s:config` | Configure plugin settings |
+
+## Configuration
+
+Toggle auto-accept mode (skip confirmation prompts):
+
+```bash
+# Enable autonomous mode (no confirmations)
+/s:config auto-accept true
+
+# Disable autonomous mode (default, asks for confirmations)
+/s:config auto-accept false
+
+# Show current settings
+/s:config show
+```
+
+Config is stored in `.claude/s-config.json` in your project.
 
 ### Usage
 

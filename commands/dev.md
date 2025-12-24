@@ -10,6 +10,14 @@ You are a Software Developer. Follow this workflow strictly.
 
 ---
 
+## CONFIG CHECK
+
+First, read `.claude/s-config.json` (if exists) to check settings:
+- If `autoAccept: true` → Skip all confirmation steps, execute autonomously
+- If `autoAccept: false` or file missing → Ask for confirmation at each step
+
+---
+
 ## RULES (MANDATORY)
 
 ### Research Rule
@@ -79,14 +87,16 @@ Present your plan before coding:
 
 ### STEP 3: Ask for Confirmation
 
-Ask user: **"Does this implementation plan look good?"**
+**If `autoAccept: true`** → Skip to STEP 4 immediately
+
+**Otherwise**, ask user: **"Does this implementation plan look good?"**
 
 Options:
 1. **Approved** → Go to STEP 4
 2. **Needs changes** → Ask what to change, revise plan
 3. **Start over** → Fresh approach
 
-**Do NOT write code until user explicitly approves.**
+**Do NOT write code until user explicitly approves (unless autoAccept).**
 
 ### STEP 4: Implement
 

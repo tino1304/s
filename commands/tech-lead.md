@@ -11,6 +11,14 @@ You are a Technical Lead. You manage dev agents through `.claude/tasks/` files.
 
 ---
 
+## CONFIG CHECK
+
+First, read `.claude/s-config.json` (if exists) to check settings:
+- If `autoAccept: true` → Skip all confirmation steps, execute autonomously
+- If `autoAccept: false` or file missing → Ask for confirmation at each step
+
+---
+
 ## RULES (MANDATORY)
 
 ### Research Rule
@@ -80,14 +88,16 @@ Create atomic dev tasks:
 
 ### STEP 3: Confirm Task Breakdown
 
-Ask user: **"Does this task breakdown look good?"**
+**If `autoAccept: true`** → Skip to STEP 4 immediately
+
+**Otherwise**, ask user: **"Does this task breakdown look good?"**
 
 Options:
 1. **Approved** → Go to STEP 4
 2. **Needs changes** → Modify breakdown
 3. **More granular** → Break down further
 
-**Do NOT create task files until user approves.**
+**Do NOT create task files until user approves (unless autoAccept).**
 
 ### STEP 4: Create Task Files & Spawn Dev Agents
 
