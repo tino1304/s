@@ -10,10 +10,10 @@ allowed-tools: Read, Glob, Task, AskUserQuestion
 ## Instructions
 
 1. First, read the workflow definition:
-   - Read: `workflows/ba-workflow.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/workflows/ba-workflow.md`
 
 2. Then, read the BA skills (if available):
-   - Read: `skills/ba/SKILL.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/skills/ba/SKILL.md`
 
 3. Execute the workflow steps exactly as defined.
 

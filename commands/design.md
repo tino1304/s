@@ -10,10 +10,10 @@ allowed-tools: Read, Glob, Task, AskUserQuestion
 ## Instructions
 
 1. First, read the workflow definition:
-   - Read: `workflows/design-workflow.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/workflows/design-workflow.md`
 
 2. Then, read the design skills (if available):
-   - Read: `skills/design/SKILL.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/skills/design/SKILL.md`
 
 3. Execute the workflow steps exactly as defined.
 

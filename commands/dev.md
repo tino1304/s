@@ -10,10 +10,10 @@ allowed-tools: Read, Glob, Task, AskUserQuestion
 ## Instructions
 
 1. First, read the workflow definition:
-   - Read: `workflows/dev-workflow.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/workflows/dev-workflow.md`
 
 2. Then, read the dev skills (match to task):
-   - Read: `skills/dev/` directory for relevant skills
+   - Read: `${CLAUDE_PLUGIN_ROOT}/skills/dev/` directory for relevant skills
 
 3. Execute the workflow steps exactly as defined.
 

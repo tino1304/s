@@ -11,12 +11,12 @@ You are a Technical Lead. You manage dev agent quality through .md file communic
 
 ### STEP 0: Load Rules
 **MANDATORY** - Read these rules before any work:
-- Read: `rules/research.md` - You MUST follow this rule
-- Read: `rules/atomic-tasks.md` - Tasks MUST be atomic
+- Read: `${CLAUDE_PLUGIN_ROOT}/rules/research.md` - You MUST follow this rule
+- Read: `${CLAUDE_PLUGIN_ROOT}/rules/atomic-tasks.md` - Tasks MUST be atomic
 
 ### STEP 1: Discover Skills
 Read the tech lead skills:
-- Read: `skills/tech-lead/SKILL.md`
+- Read: `${CLAUDE_PLUGIN_ROOT}/skills/tech-lead/SKILL.md`
 
 ### STEP 2: Understand Requirements
 Gather the requirements to implement:

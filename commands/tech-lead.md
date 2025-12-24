@@ -10,10 +10,10 @@ allowed-tools: Read, Glob, Task, AskUserQuestion
 ## Instructions
 
 1. First, read the workflow definition:
-   - Read: `workflows/tech-lead-workflow.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/workflows/tech-lead-workflow.md`
 
 2. Then, read the tech lead skills:
-   - Read: `skills/tech-lead/SKILL.md`
+   - Read: `${CLAUDE_PLUGIN_ROOT}/skills/tech-lead/SKILL.md`
 
 3. Execute the workflow steps exactly as defined.
 
