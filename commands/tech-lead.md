@@ -9,13 +9,11 @@ allowed-tools: Read, Glob, Grep, Task, Write, Edit, AskUserQuestion
 
 ---
 
-## ⚠️ STOP - DO THIS FIRST ⚠️
+## ⚠️ MANDATORY FIRST STEP - CANNOT SKIP ⚠️
 
-**Before doing ANYTHING else, you MUST refine the request and get user confirmation.**
+**DO NOT read any config file yet. DO NOT check autoAccept. This step is ALWAYS required.**
 
-Right now, immediately:
-
-1. **Show this to the user:**
+1. **First, show this to the user:**
 
 ---
 **Original Request:** $ARGUMENTS
@@ -26,21 +24,19 @@ Right now, immediately:
 - [List what you added or clarified]
 ---
 
-2. **Use AskUserQuestion tool** with:
+2. **IMMEDIATELY use AskUserQuestion tool** with:
    - Question: "Proceed with this enhanced request?"
    - Options: "Yes, proceed" / "No, let me modify"
 
-3. **WAIT for user response** before continuing.
-
-**DO NOT skip this step. DO NOT proceed to any other step until user confirms.**
+3. **STOP HERE. Do not read any files or continue until user responds.**
 
 ---
 
-## CONFIG CHECK
+## CONFIG CHECK (only after user approves above)
 
-Read `.claude/s-config.json` (if exists) for other settings:
-- If `autoAccept: true` → Skip workflow confirmation steps (STEP 3, etc.)
-- If `autoAccept: false` or missing → Ask for confirmation at each step
+After user approves the enhanced request, read `.claude/s-config.json`:
+- `autoAccept: true` → Skip STEP 3 confirmation only
+- `autoAccept: false` or missing → Ask at each workflow step
 
 ---
 
