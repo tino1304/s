@@ -1,37 +1,61 @@
 #!/usr/bin/env python3
 """
-Prompt Refinement Hook for Coze Toolkit
+Prompt Refinement Hook for S Plugin
 
-Refines user prompts before LLM execution.
-Triggers for /coze-* commands and general prompts.
+Applies to ALL user prompts. Asks user if they want enhancement before proceeding.
 """
 
 import json
 import sys
 import re
 
-# Commands that need LLM actions (trigger refinement)
-# Plugin name is "s", commands are "dev", "ba", etc.
-# When installed: /s:dev, /s:ba, /s:design, /s:tech-lead
-COZE_LLM_COMMANDS = [
-    "s:ba",
-    "s:dev",
-    "s:design",
-    "s:tech-lead"
-]
-
-# Commands to skip refinement (they do their own refinement)
-SKIP_COMMANDS = [
-    "s:refine",
-    "s:config"
-]
-
-# Skip refinement for these patterns
+# Skip refinement for these exact patterns (confirmations, short responses)
 SKIP_PATTERNS = [
     "yes", "no", "ok", "approved", "confirm", "cancel",
     "y", "n", "done", "skip", "continue", "stop",
-    "proceed", "looks good", "lgtm"
+    "proceed", "looks good", "lgtm", "go ahead",
+    "yes, proceed", "no, let me modify",
+    "enhance", "don't enhance", "original"
 ]
+
+# Skip refinement for commands that handle their own flow
+SKIP_COMMAND_PATTERNS = [
+    r'^/s:config',
+    r'^/help',
+    r'^/clear',
+    r'^/compact',
+    r'^/cost',
+    r'^/doctor',
+    r'^/init',
+    r'^/login',
+    r'^/logout',
+    r'^/memory',
+    r'^/model',
+    r'^/permissions',
+    r'^/review',
+    r'^/status',
+    r'^/terminal-setup',
+    r'^/vim',
+]
+
+def should_skip(prompt: str) -> bool:
+    """Check if prompt should skip refinement."""
+    prompt_lower = prompt.lower().strip()
+
+    # Skip short prompts
+    if len(prompt_lower) < 10:
+        return True
+
+    # Skip exact confirmation patterns
+    if prompt_lower in SKIP_PATTERNS:
+        return True
+
+    # Skip built-in commands
+    for pattern in SKIP_COMMAND_PATTERNS:
+        if re.match(pattern, prompt, re.IGNORECASE):
+            return True
+
+    return False
 
 def main():
     try:
@@ -45,69 +69,46 @@ def main():
         if not prompt:
             sys.exit(0)
 
-        prompt_lower = prompt.lower().strip()
-
-        # Skip short confirmations
-        if prompt_lower in SKIP_PATTERNS or len(prompt_lower) < 5:
+        # Check if should skip
+        if should_skip(prompt):
             sys.exit(0)
 
-        # Check if it's a /s:* command (e.g., /s:dev, /s:tech-lead)
-        coze_match = re.match(r'^/(s:[a-z-]+)\s*(.*)', prompt, re.DOTALL | re.IGNORECASE)
+        # For all other prompts, ask user if they want enhancement
+        output = f"""<prompt-refinement>
+Before proceeding with the user's request, you MUST ask if they want prompt enhancement.
 
-        if coze_match:
-            command = coze_match.group(1).lower()
-            args = coze_match.group(2).strip()
+**User's Original Prompt:**
+{prompt}
 
-            # Skip commands that handle their own refinement
-            if command in SKIP_COMMANDS:
-                sys.exit(0)
+**Your Action:**
+Use AskUserQuestion tool NOW with:
+- Question: "Would you like me to enhance this prompt with more detail and clarity?"
+- Options:
+  1. "Enhance" - You will analyze and improve the prompt, then ask for confirmation
+  2. "Original" - Proceed with the original prompt as-is
 
-            # Only refine s:* LLM commands
-            if command in COZE_LLM_COMMANDS:
-                if not args or len(args) < 5:
-                    sys.exit(0)  # No args to refine
-
-                output = f"""[COZE PROMPT REFINEMENT]
-
-**Command detected:** /{command}
-**Arguments:** {args}
-
-Before executing, you MUST:
-
-1. **Analyze the arguments** and identify:
+**If user selects "Enhance":**
+1. Analyze the prompt for:
    - Main intent/goal
-   - Any ambiguities or missing details
+   - Ambiguities or missing details
    - Implicit requirements
+2. Present:
+   ---
+   **Original:** {prompt}
 
-2. **Create enhanced arguments** that:
-   - Correct any grammar/spelling issues
-   - Add specific details and context
-   - Clarify scope and expected output
+   **Enhanced:** [Your refined, detailed version]
 
-3. **Present to user**:
+   **Clarifications added:**
+   - [What you added/clarified]
+   ---
+3. Ask confirmation: "Proceed with enhanced version?"
+4. Only proceed after user confirms
 
----
-**Command:** /{command}
+**If user selects "Original":**
+Proceed with the original prompt immediately.
 
-**Original:** {args}
-
-**Enhanced:**
-[Your refined, detailed version of the arguments]
-
-**Added clarifications:**
-- [What you added/clarified]
----
-
-4. **Ask confirmation** using AskUserQuestion:
-   - "Proceed with this enhanced request?"
-   - Options: "Yes, proceed" / "No, let me modify"
-
-5. **Only execute** the /{command} workflow AFTER user confirms.
-
-[END REFINEMENT]
-"""
-                print(output)
-        # Non-matching commands - skip refinement
+</prompt-refinement>"""
+        print(output)
         sys.exit(0)
 
     except json.JSONDecodeError:

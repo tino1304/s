@@ -12,7 +12,6 @@
     ],
     "UserPromptSubmit": [
       {
-        "matcher": "^/s:",
         "hooks": [
           {
             "type": "command",

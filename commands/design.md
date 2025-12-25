@@ -8,33 +8,10 @@ description: Designer - UI/UX design, wireframes, design systems
 
 ---
 
-## ⚠️ MANDATORY FIRST STEP - CANNOT SKIP ⚠️
+## CONFIG CHECK
 
-**DO NOT read any config file yet. DO NOT check autoAccept. This step is ALWAYS required.**
-
-1. **First, show this to the user:**
-
----
-**Original Request:** $ARGUMENTS
-
-**Enhanced Request:** [Write a more detailed, specific version of what the user wants. Add context, clarify scope, make assumptions explicit.]
-
-**Clarifications Added:**
-- [List what you added or clarified]
----
-
-2. **IMMEDIATELY use AskUserQuestion tool** with:
-   - Question: "Proceed with this enhanced request?"
-   - Options: "Yes, proceed" / "No, let me modify"
-
-3. **STOP HERE. Do not read any files or continue until user responds.**
-
----
-
-## CONFIG CHECK (only after user approves above)
-
-After user approves the enhanced request, read `.claude/s-config.json`:
-- `autoAccept: true` → Skip STEP 3 confirmation only
+Read `.claude/s-config.json` if it exists:
+- `autoAccept: true` → Skip confirmations at workflow steps
 - `autoAccept: false` or missing → Ask at each workflow step
 
 ---
