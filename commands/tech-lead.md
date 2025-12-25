@@ -143,7 +143,15 @@ Use the Task tool with:
 After each dev agent completes:
 
 1. **Review the agent's output** - what changes were made?
-2. **Verify against acceptance criteria**
+2. **Verify code works** - Run build/type check commands:
+   ```bash
+   # Examples - use project's actual commands
+   npm run build
+   npm run typecheck
+   npx tsc --noEmit
+   pnpm build
+   ```
+   Do NOT spawn another dev agent for verification.
 3. **Update task file** with Report and Review sections
 4. **Update TRACKER.md** with status
 
