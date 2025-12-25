@@ -74,6 +74,15 @@
             "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/enforce-task-files.py"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/enforce-build-only.py"
+          }
+        ]
       }
     ],
     "PostToolUse": [

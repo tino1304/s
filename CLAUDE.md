@@ -34,10 +34,11 @@ coze/
 | Hook | Script | Purpose |
 |------|--------|---------|
 | SessionStart | `session-rules.py` | Loads mandatory rules |
-| UserPromptSubmit | `refine-prompt.py` | Enhances prompts before execution |
+| UserPromptSubmit | `refine-prompt.py` | Asks if user wants prompt enhancement |
 | UserPromptSubmit | `discover-skills.py` | Loads skills for @role prompts |
 | PreToolUse | `enforce-write.py` | BLOCKS protected file writes |
 | PreToolUse | `enforce-task-files.py` | Enforces task files in `.claude/tasks/` |
+| PreToolUse | `enforce-build-only.py` | BLOCKS dev servers, only allows build/test |
 | PostToolUse | `enforce-research.py` | Reminds to show proof after research |
 
 ## Rules (MANDATORY)
