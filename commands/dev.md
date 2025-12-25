@@ -34,6 +34,31 @@ Every claim must have proof:
 
 When no evidence: Say "Not found" and suggest next steps.
 
+### Tailwind v4 Warning (Frontend)
+
+**CRITICAL:** If using Tailwind, check version first. v4 has breaking changes:
+
+```bash
+# Check version
+npm list tailwindcss
+```
+
+| v3 (OLD) | v4 (NEW) |
+|----------|----------|
+| `tailwind.config.js` | CSS `@config` or `@theme` |
+| `theme.extend.colors` | `@theme { --color-*: }` |
+| `@tailwind base` | `@import "tailwindcss"` |
+
+**v4 Example:**
+```css
+@import "tailwindcss";
+@theme {
+  --color-primary: oklch(0.7 0.15 200);
+}
+```
+
+Do NOT mix v3 config patterns with v4.
+
 ---
 
 ## WORKFLOW STEPS

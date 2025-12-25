@@ -20,6 +20,12 @@ COZE_LLM_COMMANDS = [
     "s:tech-lead"
 ]
 
+# Commands to skip refinement (they do their own refinement)
+SKIP_COMMANDS = [
+    "s:refine",
+    "s:config"
+]
+
 # Skip refinement for these patterns
 SKIP_PATTERNS = [
     "yes", "no", "ok", "approved", "confirm", "cancel",
@@ -45,14 +51,18 @@ def main():
         if prompt_lower in SKIP_PATTERNS or len(prompt_lower) < 5:
             sys.exit(0)
 
-        # Check if it's a /coze-* command
-        coze_match = re.match(r'^/(\w+[-\w]*)\s*(.*)', prompt, re.DOTALL)
+        # Check if it's a /s:* command (e.g., /s:dev, /s:tech-lead)
+        coze_match = re.match(r'^/(s:[a-z-]+)\s*(.*)', prompt, re.DOTALL | re.IGNORECASE)
 
         if coze_match:
             command = coze_match.group(1).lower()
             args = coze_match.group(2).strip()
 
-            # Only refine coze LLM commands
+            # Skip commands that handle their own refinement
+            if command in SKIP_COMMANDS:
+                sys.exit(0)
+
+            # Only refine s:* LLM commands
             if command in COZE_LLM_COMMANDS:
                 if not args or len(args) < 5:
                     sys.exit(0)  # No args to refine
@@ -97,47 +107,7 @@ Before executing, you MUST:
 [END REFINEMENT]
 """
                 print(output)
-            # Other slash commands - skip refinement
-            sys.exit(0)
-
-        # General prompts (not slash commands) - also refine
-        else:
-            output = f"""[COZE PROMPT REFINEMENT]
-
-Before executing this request, you MUST:
-
-1. **Analyze the prompt** and identify:
-   - Main intent/goal
-   - Any ambiguities or missing details
-   - Implicit requirements
-
-2. **Create an enhanced prompt** that:
-   - Corrects any grammar/spelling issues
-   - Adds specific details and context
-   - Clarifies scope and expected output
-
-3. **Present to user**:
-
----
-**Original:** {prompt}
-
-**Enhanced:**
-[Your refined, detailed version]
-
-**Added clarifications:**
-- [What you added/clarified]
----
-
-4. **Ask confirmation** using AskUserQuestion:
-   - "Proceed with this enhanced prompt?"
-   - Options: "Yes, proceed" / "No, let me modify"
-
-5. **Only proceed** AFTER user confirms.
-
-[END REFINEMENT]
-"""
-            print(output)
-
+        # Non-matching commands - skip refinement
         sys.exit(0)
 
     except json.JSONDecodeError:

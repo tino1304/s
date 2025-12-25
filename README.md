@@ -25,6 +25,7 @@ claude --plugin-dir /path/to/coze
 | `/s:ba` | Business Analyst - requirements & user stories |
 | `/s:design` | Designer - UI/UX design tasks |
 | `/s:tech-lead` | Tech Lead - manage dev agents, break down tasks |
+| `/s:refine` | Refine and enhance a prompt before running |
 | `/s:config` | Configure plugin settings |
 
 ## Configuration

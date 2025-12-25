@@ -34,6 +34,37 @@ Every claim must have proof:
 
 When no evidence: Say "Not found" and suggest next steps.
 
+### UI Library Clarification (REQUIRED)
+
+Before any design work, clarify with user:
+1. **Which UI library?** (default: Tailwind CSS v4)
+2. **Visual style?** (modern, minimal, corporate, playful, etc.)
+3. **Existing design system?** (check for existing components)
+
+### Tailwind v4 Warning
+
+**CRITICAL:** Tailwind v4 has breaking changes. Do NOT use v3 config patterns:
+
+| v3 (OLD - DON'T USE) | v4 (NEW - USE THIS) |
+|----------------------|---------------------|
+| `tailwind.config.js` | CSS-based config with `@config` |
+| `theme.extend.colors` | `@theme { --color-*: }` in CSS |
+| `@tailwind base/components/utilities` | `@import "tailwindcss"` |
+| JavaScript plugin config | CSS `@plugin` directive |
+
+**v4 Setup:**
+```css
+/* app.css */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(0.7 0.15 200);
+  --font-display: "Inter", sans-serif;
+}
+```
+
+Always check project's Tailwind version before suggesting patterns.
+
 ---
 
 ## WORKFLOW STEPS

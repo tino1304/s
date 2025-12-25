@@ -8,7 +8,7 @@
       "name": "s",
       "source": "./",
       "description": "Agent-based development workflows with enforced rules for Claude Code",
-      "version": "0.1.21",
+      "version": "0.1.22",
       "author": {
         "name": "Tino"
       },

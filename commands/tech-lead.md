@@ -57,13 +57,41 @@ Tasks must be atomic - smallest unit of work:
    - How many components/features?
    - What dependencies exist?
 
+3. **Check if frontend/UI work involved**
+   - If yes → Spawn design agent first (see STEP 1.5)
+
 **Output:**
 ```markdown
 ## Requirements Summary
 **Source:** [file path or "user request"]
 **Features:** [list]
+**Has Frontend/UI:** Yes | No
 **Complexity:** Low | Medium | High
 ```
+
+### STEP 1.5: Involve Design Agent (if frontend work)
+
+If the project involves frontend/UI components:
+
+1. **Spawn design agent** using Task tool:
+   ```
+   subagent_type: "general-purpose"
+   prompt: "You are a UI/UX Designer. Analyze this requirement and clarify with user:
+   1. Which UI library? (default: Tailwind CSS v4)
+   2. What visual style? (modern, minimal, corporate, etc.)
+   3. Any existing design system to follow?
+
+   IMPORTANT: If using Tailwind v4, warn about breaking changes:
+   - No more tailwind.config.js - use CSS @config
+   - New @theme directive replaces theme.extend
+   - @apply works differently
+   - Colors use oklch by default
+
+   Requirement: [paste requirement here]"
+   ```
+
+2. **Wait for design agent** to confirm UI decisions
+3. **Include design decisions** in task breakdown
 
 ### STEP 2: Break Down into Tasks
 
