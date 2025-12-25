@@ -21,8 +21,20 @@ TRACKER_FILE = 'TRACKER.md'
 REQUIRED_SECTIONS = ['Assignment', 'Report', 'Review']
 
 def get_project_root():
-    """Get the project root (where .claude should be)."""
-    # Use CWD as project root
+    """Get the project root by walking up to find .claude/ or .git/."""
+    current = os.getcwd()
+
+    # Walk up the directory tree
+    while current != os.path.dirname(current):  # Stop at filesystem root
+        # Check for .claude/ directory (our marker)
+        if os.path.isdir(os.path.join(current, '.claude')):
+            return current
+        # Check for .git/ as fallback project root indicator
+        if os.path.isdir(os.path.join(current, '.git')):
+            return current
+        current = os.path.dirname(current)
+
+    # Fallback to cwd if no project root found
     return os.getcwd()
 
 def ensure_tasks_dir():

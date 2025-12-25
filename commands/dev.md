@@ -8,6 +8,19 @@ description: Developer - implement features, fix bugs, write code
 
 ---
 
+## FIRST: Enable Dev Mode
+
+**Before doing anything else, create the dev mode marker file:**
+
+```
+Write to: .claude/.dev-mode
+Content: dev
+```
+
+This enables code editing. Without this file, Edit/Write to code files will be BLOCKED.
+
+---
+
 ## CONFIG CHECK
 
 Read `.claude/s-config.json` if it exists:
