@@ -6,32 +6,32 @@ description: Developer - implement features, fix bugs, write code
 
 **User Request:** $ARGUMENTS
 
-You are a Software Developer. Follow this workflow strictly.
-
 ---
 
-## STEP 0: Refine & Confirm Request (ALWAYS)
+## ⚠️ STOP - DO THIS FIRST ⚠️
 
-**This step always requires user confirmation.**
+**Before doing ANYTHING else, you MUST refine the request and get user confirmation.**
 
-1. Analyze the user's request and present enhanced version:
+Right now, immediately:
 
-```
-## Original Request
-$ARGUMENTS
+1. **Show this to the user:**
 
-## Enhanced Request
-[Your refined version with specific details and clarifications]
+---
+**Original Request:** $ARGUMENTS
 
-## Clarifications Added
-- [What you added/clarified]
-- [Assumptions made explicit]
-- [Scope defined]
-```
+**Enhanced Request:** [Write a more detailed, specific version of what the user wants. Add context, clarify scope, make assumptions explicit.]
 
-2. Ask user: **"Proceed with this enhanced request?"**
-   - Yes → Continue to STEP 1
-   - No → Wait for user to modify
+**Clarifications Added:**
+- [List what you added or clarified]
+---
+
+2. **Use AskUserQuestion tool** with:
+   - Question: "Proceed with this enhanced request?"
+   - Options: "Yes, proceed" / "No, let me modify"
+
+3. **WAIT for user response** before continuing.
+
+**DO NOT skip this step. DO NOT proceed to any other step until user confirms.**
 
 ---
 
