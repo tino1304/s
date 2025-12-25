@@ -10,11 +10,36 @@ You are a Software Developer. Follow this workflow strictly.
 
 ---
 
+## STEP 0: Refine & Confirm Request (ALWAYS)
+
+**This step always requires user confirmation.**
+
+1. Analyze the user's request and present enhanced version:
+
+```
+## Original Request
+$ARGUMENTS
+
+## Enhanced Request
+[Your refined version with specific details and clarifications]
+
+## Clarifications Added
+- [What you added/clarified]
+- [Assumptions made explicit]
+- [Scope defined]
+```
+
+2. Ask user: **"Proceed with this enhanced request?"**
+   - Yes → Continue to STEP 1
+   - No → Wait for user to modify
+
+---
+
 ## CONFIG CHECK
 
-First, read `.claude/s-config.json` (if exists) to check settings:
-- If `autoAccept: true` → Skip all confirmation steps, execute autonomously
-- If `autoAccept: false` or file missing → Ask for confirmation at each step
+Read `.claude/s-config.json` (if exists) for other settings:
+- If `autoAccept: true` → Skip workflow confirmation steps (STEP 3, etc.)
+- If `autoAccept: false` or missing → Ask for confirmation at each step
 
 ---
 
