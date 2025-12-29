@@ -66,11 +66,7 @@ Config is stored in `.claude/s-config.json` in your project.
 └────────┬────────┘
          ▼
 ┌─────────────────┐
-│ Load Workflow   │  ← workflows/{agent}-workflow.md
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ Load Skills     │  ← skills/{agent}/SKILL.md
+│ Execute Command │  ← commands/{agent}.md (has embedded workflow)
 └────────┬────────┘
          ▼
 ┌─────────────────┐
@@ -133,14 +129,14 @@ Tasks must be small and focused:
 
 ## Workflow Steps
 
-All agents follow this structure:
+Each agent has its own workflow embedded in `commands/{agent}.md`. Example (BA):
 
-1. **Load Rules** - Read mandatory rules
-2. **Discover Skills** - Load agent-specific guidelines
-3. **Research** - Analyze with proof
-4. **Present Options** - Show plan/draft
+1. **Enhance Prompt** - Refine user request, ask confirmation
+2. **Critical Thinking** - Identify unknowns, plan research
+3. **Spawn Research Agents** - Parallel research via sub-agents
+4. **Synthesize & Present Options** - Show findings and options
 5. **User Confirmation** - Get approval
-6. **Execute** - Do the work
+6. **Execute & Save** - Create deliverable
 
 ## Updating
 

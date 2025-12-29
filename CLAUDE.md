@@ -10,9 +10,8 @@ Coze is a Claude Code plugin that provides agent-based development workflows wit
 
 ```
 coze/
-├── commands/           # Slash commands (/s:ba, /s:dev, /s:tech-lead)
-├── workflows/          # Workflow definitions (steps each agent follows)
-├── skills/             # Agent-specific guidelines and patterns
+├── commands/           # Slash commands with embedded workflows (/s:ba, /s:dev, /s:tech-lead)
+├── skills/             # Additional guidelines for @role prompts
 │   ├── {agent}/SKILL.md
 │   └── skill-index.json  # Keyword → skill mapping
 ├── rules/              # Mandatory rules (enforced by hooks)
@@ -21,13 +20,18 @@ coze/
 └── .claude-plugin/     # Plugin manifest
 ```
 
-## Flow: Command → Workflow → Skills → Rules
+## Flow
 
+**Option 1: `/s:{agent}` commands**
 1. User runs `/s:{agent} [query]` (e.g., `/s:dev fix the login bug`)
-2. `refine-prompt.py` enhances the request, asks confirmation
-3. Command loads `workflows/{agent}-workflow.md`
-4. Workflow reads `skills/{agent}/SKILL.md`
-5. Rules enforced via hooks throughout execution
+2. `refine-prompt.py` asks if user wants prompt enhancement
+3. Command file (`commands/{agent}.md`) executes with embedded workflow
+4. Rules enforced via hooks throughout execution
+
+**Option 2: `@role` prompts**
+1. User types `@dev some task` or `@ba analyze this`
+2. `discover-skills.py` loads matching skills from `skills/{role}/`
+3. Claude follows the skill guidelines
 
 ## Hooks (Enforced, Cannot Bypass)
 
@@ -59,22 +63,9 @@ Tasks must be atomic - smallest unit of work that delivers value:
 
 ## Adding New Agents
 
-1. Create `skills/{agent}/SKILL.md`
-2. Create `workflows/{agent}-workflow.md`
-3. Create `commands/{agent}.md`
-4. Add to `skills/skill-index.json`
-5. Add to `COZE_LLM_COMMANDS` in `scripts/refine-prompt.py`
-
-## Workflow Structure (All Agents Follow)
-
-```
-STEP 0: Load Rules (rules/research.md)
-STEP 1: Discover Skills
-STEP 2: Research & Analysis (with proof)
-STEP 3: Present Options/Draft
-STEP 4: User Confirmation (loop if needed)
-STEP 5+: Execute & Save
-```
+1. Create `commands/{agent}.md` with embedded workflow
+2. (Optional) Create `skills/{agent}/SKILL.md` for @role prompts
+3. (Optional) Add to `skills/skill-index.json` for keyword matching
 
 ## Agent Communication
 

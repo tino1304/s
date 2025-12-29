@@ -156,11 +156,7 @@ After approval:
 ```
 Use the Task tool with:
 - subagent_type: "general-purpose"
-- prompt: "You are a DEV agent.
-
-FIRST: Create file .claude/.dev-mode with content 'dev' to enable code editing.
-
-Then implement this task:
+- prompt: "You are a DEV agent. Implement this task:
 [Objective]
 [Requirements]
 [Acceptance Criteria]
@@ -169,8 +165,6 @@ Then implement this task:
 After completing, update the task file with your Report section."
 - description: "TASK-XXX: [short name]"
 ```
-
-**IMPORTANT:** The dev agent MUST create `.claude/.dev-mode` first, or code edits will be BLOCKED.
 
 **Task file format** (create in `.claude/tasks/`):
 
