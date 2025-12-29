@@ -39,24 +39,7 @@ coze/
 | PreToolUse | `enforce-write.py` | BLOCKS protected file writes |
 | PreToolUse | `enforce-task-files.py` | Enforces task files in `.claude/tasks/` |
 | PreToolUse | `enforce-build-only.py` | BLOCKS dev servers, only allows build/test |
-| PreToolUse | `enforce-delegation.py` | BLOCKS code edits unless `.claude/.dev-mode` exists |
 | PostToolUse | `enforce-research.py` | Reminds to show proof after research |
-
-## Dev Mode (Code Editing)
-
-Code editing is controlled by `.claude/.dev-mode` marker file:
-- **Without marker:** Edit/Write to code files is BLOCKED
-- **With marker:** Code editing is allowed
-
-This ensures:
-- Tech-lead cannot edit code directly (must spawn dev agents)
-- Dev agents create the marker file first, then can edit code
-
-**Flow:**
-1. Tech-lead spawns dev agent with Task tool
-2. Dev agent creates `.claude/.dev-mode`
-3. Dev agent can now edit code files
-4. Tech-lead reviews the work
 
 ## Rules (MANDATORY)
 
