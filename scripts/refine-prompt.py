@@ -101,8 +101,21 @@ Use AskUserQuestion tool NOW with:
    **Clarifications added:**
    - [What you added/clarified]
    ---
-3. Ask confirmation: "Proceed with enhanced version?"
-4. Only proceed after user confirms
+3. Use AskUserQuestion with:
+   - Question: "Proceed with this enhanced version?"
+   - Options:
+     1. "Yes, proceed" - Execute the enhanced prompt
+     2. "No, let me modify" - User will provide changes
+
+4. **CRITICAL LOOP:**
+   - If "Yes, proceed" → Execute the task
+   - If "No, let me modify" → Wait for user's changes, then:
+     a. Update the enhanced prompt based on their feedback
+     b. Present the NEW enhanced version
+     c. Ask confirmation AGAIN using AskUserQuestion
+     d. REPEAT until user selects "Yes, proceed"
+
+   **NEVER execute until user explicitly selects "Yes, proceed"**
 
 **If user selects "Original":**
 Proceed with the original prompt immediately.

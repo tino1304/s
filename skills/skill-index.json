@@ -11,7 +11,30 @@
             "react", "component", "hook", "usestate", "useeffect", "typescript", "tsx", "jsx",
             "frontend", "ui", "button", "form", "modal", "tailwind", "css", "styled",
             "zustand", "redux", "context", "tanstack", "query", "mutation",
-            "vitest", "testing-library", "jest", "test"
+            "vitest", "testing-library", "jest", "test",
+            "vite", "shadcn", "radix", "framer"
+          ]
+        },
+        {
+          "name": "backend-golang",
+          "path": "dev/backend-golang/SKILL.md",
+          "keywords": [
+            "golang", "go", "gin", "echo", "fiber",
+            "goroutine", "channel", "context", "middleware",
+            "pgx", "sqlx", "bob", "gorm",
+            "grpc", "protobuf", "api", "rest",
+            "redis", "cache", "postgres", "postgresql"
+          ]
+        },
+        {
+          "name": "backend-nodejs",
+          "path": "dev/backend-nodejs/SKILL.md",
+          "keywords": [
+            "node", "nodejs", "express", "fastify", "nest", "nestjs",
+            "prisma", "drizzle", "typeorm", "sequelize",
+            "typescript", "ts", "javascript", "js",
+            "api", "rest", "graphql", "websocket",
+            "redis", "cache", "postgres", "postgresql", "mongodb"
           ]
         }
       ]

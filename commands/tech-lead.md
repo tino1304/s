@@ -88,23 +88,64 @@ Tasks must be atomic - smallest unit of work:
 **Complexity:** Low | Medium | High
 ```
 
-### STEP 1.5: Involve Design Agent (if frontend work)
+### STEP 2: Define Technical Architecture (NEW PROJECTS ONLY)
+
+**Skip this step if working on an existing project with established tech stack.**
+
+Only run this step if:
+- User is creating a new application
+- No existing codebase to follow
+
+#### Default Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | React + TypeScript (strict) + Vite + Tailwind CSS |
+| **Backend** | Golang |
+| **Database** | PostgreSQL |
+| **Cache** | Redis |
+
+#### Ask User (AskUserQuestion)
+
+**Question 1: Frontend Libraries** (if frontend involved)
+```
+Question: "Which additional frontend libraries do you want?"
+multiSelect: true
+Options:
+- "Shadcn/ui" - Pre-built accessible components
+- "TanStack Query" - Server state management
+- "Zustand" - Client state management
+- "None" - Just React + Tailwind
+```
+
+**Question 2: Backend Architecture**
+```
+Question: "Which backend architecture?"
+Options:
+- "Simple (Recommended)" - Auto-choose lightweight setup (Gin/Echo basic)
+- "Advanced" - Full enterprise stack
+```
+
+#### If "Advanced" Backend Selected
+
+Use these specific libraries:
+```
+- Web framework: github.com/labstack/echo/v4
+- SQL toolkit: github.com/stephenafamo/bob
+- CLI: github.com/urfave/cli/v2
+- Dependency injection: github.com/samber/do/v2
+```
+
+### STEP 2.5: Involve Design Agent (if frontend work)
 
 If the project involves frontend/UI components:
 
 1. **Spawn design agent** using Task tool:
    ```
    subagent_type: "general-purpose"
-   prompt: "You are a UI/UX Designer. Analyze this requirement and clarify with user:
-   1. Which UI library? (default: Tailwind CSS v4)
-   2. What visual style? (modern, minimal, corporate, etc.)
-   3. Any existing design system to follow?
-
-   IMPORTANT: If using Tailwind v4, warn about breaking changes:
-   - No more tailwind.config.js - use CSS @config
-   - New @theme directive replaces theme.extend
-   - @apply works differently
-   - Colors use oklch by default
+   prompt: "You are a UI/UX Designer. Analyze this requirement and clarify:
+   1. Visual style? (modern, minimal, corporate, etc.)
+   2. Any existing design system to follow?
 
    Requirement: [paste requirement here]"
    ```
@@ -112,7 +153,7 @@ If the project involves frontend/UI components:
 2. **Wait for design agent** to confirm UI decisions
 3. **Include design decisions** in task breakdown
 
-### STEP 2: Break Down into Tasks
+### STEP 3: Break Down into Tasks
 
 Create atomic dev tasks:
 
@@ -133,9 +174,9 @@ Create atomic dev tasks:
   - [ ] [Criterion 2]
 ```
 
-### STEP 3: Confirm Task Breakdown
+### STEP 4: Confirm Task Breakdown
 
-**If `autoAccept: true`** → Skip to STEP 4 immediately
+**If `autoAccept: true`** → Skip to STEP 5 immediately
 
 **Otherwise**, ask user: **"Does this task breakdown look good?"**
 
@@ -146,24 +187,74 @@ Options:
 
 **Do NOT create task files until user approves (unless autoAccept).**
 
-### STEP 4: Create Task Files & Spawn Dev Agents
+### STEP 5: Create Task Files & Spawn Dev Agents
 
 After approval:
 
 1. **Create `.claude/tasks/TRACKER.md`** to track all tasks
-2. **For each task**, spawn a dev agent using the Task tool:
 
+2. **Detect the correct dev agent type** for each task:
+
+| Task Type | Keywords to Detect | Agent Skill |
+|-----------|-------------------|-------------|
+| **Frontend** | react, component, ui, page, form, button, tailwind, vite, tsx | frontend-react |
+| **Backend Go** | go, golang, gin, echo, handler, middleware, grpc | backend-golang |
+| **Backend Node** | node, express, fastify, prisma, nest, controller | backend-nodejs |
+
+3. **For each task**, spawn the CORRECT specialized dev agent:
+
+**Frontend Task:**
 ```
-Use the Task tool with:
+Task tool:
 - subagent_type: "general-purpose"
-- prompt: "You are a DEV agent. Implement this task:
+- prompt: "You are a FRONTEND DEV agent (React + TypeScript + Vite + Tailwind).
+
+Read skill file first: ${CLAUDE_PLUGIN_ROOT}/skills/dev/frontend-react/SKILL.md
+
+Then implement this task:
 [Objective]
 [Requirements]
 [Acceptance Criteria]
 [Files to modify]
 
 After completing, update the task file with your Report section."
-- description: "TASK-XXX: [short name]"
+- description: "TASK-XXX: [short name] (frontend)"
+```
+
+**Backend Golang Task:**
+```
+Task tool:
+- subagent_type: "general-purpose"
+- prompt: "You are a GOLANG DEV agent.
+
+Read skill file first: ${CLAUDE_PLUGIN_ROOT}/skills/dev/backend-golang/SKILL.md
+
+Then implement this task:
+[Objective]
+[Requirements]
+[Acceptance Criteria]
+[Files to modify]
+
+After completing, update the task file with your Report section."
+- description: "TASK-XXX: [short name] (golang)"
+```
+
+**Backend Node.js Task:**
+```
+Task tool:
+- subagent_type: "general-purpose"
+- prompt: "You are a NODE.JS DEV agent (TypeScript).
+
+Read skill file first: ${CLAUDE_PLUGIN_ROOT}/skills/dev/backend-nodejs/SKILL.md
+
+Then implement this task:
+[Objective]
+[Requirements]
+[Acceptance Criteria]
+[Files to modify]
+
+After completing, update the task file with your Report section."
+- description: "TASK-XXX: [short name] (nodejs)"
 ```
 
 **Task file format** (create in `.claude/tasks/`):
@@ -191,7 +282,7 @@ After completing, update the task file with your Report section."
 3. **Run tasks sequentially** (or in parallel if independent)
 4. **Wait for each agent to complete** before reviewing
 
-### STEP 5: Monitor & Review
+### STEP 6: Monitor & Review
 
 After each dev agent completes:
 
@@ -210,7 +301,7 @@ After each dev agent completes:
 
 If changes requested → spawn agent again with feedback
 
-### STEP 6: Final Report
+### STEP 7: Final Report
 
 When all tasks complete:
 
