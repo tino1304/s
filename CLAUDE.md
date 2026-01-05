@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What is Coze
 
-Coze is a Claude Code plugin that provides agent-based development workflows with enforced rules. It manages agents (BA, Dev, Design, Tech Lead) through structured workflows, skills, and hooks.
+Coze is a Claude Code plugin that provides agent-based development workflows with enforced rules. It manages agents (BA, Dev, Flutter, Design, Tech Lead) through structured workflows, skills, and hooks.
 
 ## Architecture
 

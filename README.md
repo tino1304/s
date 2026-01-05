@@ -22,6 +22,7 @@ claude --plugin-dir /path/to/coze
 | Command | Description |
 |---------|-------------|
 | `/s:dev` | Developer - implementation tasks |
+| `/s:flutter` | Flutter Mobile Developer - cross-platform mobile apps |
 | `/s:ba` | Business Analyst - requirements & user stories |
 | `/s:design` | Designer - UI/UX design tasks |
 | `/s:tech-lead` | Tech Lead - manage dev agents, break down tasks |

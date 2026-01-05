@@ -36,6 +36,21 @@
             "api", "rest", "graphql", "websocket",
             "redis", "cache", "postgres", "postgresql", "mongodb"
           ]
+        },
+        {
+          "name": "mobile-flutter",
+          "path": "dev/mobile-flutter/SKILL.md",
+          "keywords": [
+            "flutter", "dart", "mobile", "ios", "android", "cross-platform",
+            "widget", "stateful", "stateless", "scaffold", "materialapp",
+            "bloc", "cubit", "provider", "riverpod", "getx", "state management",
+            "gorouter", "navigator", "route", "navigation",
+            "dio", "http", "api", "rest",
+            "hive", "sqflite", "drift", "sharedpreferences",
+            "freezed", "json_serializable", "pubspec",
+            "platform channel", "methodchannel",
+            "firebase", "firestore", "fcm", "push notification"
+          ]
         }
       ]
     },
