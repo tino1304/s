@@ -12,14 +12,6 @@
     ],
     "UserPromptSubmit": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/refine-prompt.py"
-          }
-        ]
-      },
-      {
         "matcher": "^@dev\\s",
         "hooks": [
           {
