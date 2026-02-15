@@ -4,6 +4,15 @@
     "UserPromptSubmit": [],
     "PreToolUse": [
       {
+        "matcher": "Read|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/allow-plugin-paths.py ${CLAUDE_PLUGIN_ROOT}"
+          }
+        ]
+      },
+      {
         "matcher": "Write|Edit|Bash",
         "hooks": [
           {

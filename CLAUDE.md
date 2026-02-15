@@ -10,7 +10,7 @@ Coze is a Claude Code plugin that provides agent-based development workflows wit
 
 ```
 coze/
-├── commands/           # Slash commands (/s:a, /s:init, /s:launch, /s:refine, /s:scan, /s:backlog, /s:backlog-add, /s:backlog-rm)
+├── commands/           # Slash commands (/s:help, /s:a, /s:init, /s:launch, /s:refine, /s:scan, /s:backlog, /s:backlog-add, /s:backlog-rm)
 ├── skills/             # Skill guidelines per language/framework
 │   ├── dev/{lang}/*.md
 │   └── skill-index.json  # Keyword → skill mapping
@@ -22,7 +22,7 @@ coze/
 
 ## Flow
 
-1. User runs `/s:a [query]` or other commands (`/s:launch`, `/s:init`, `/s:refine`, `/s:scan`, `/s:backlog`)
+1. User runs `/s:a [query]` or other commands (`/s:help`, `/s:launch`, `/s:init`, `/s:refine`, `/s:scan`, `/s:backlog`)
 2. Command file (`commands/*.md`) executes with embedded workflow
 3. Rules enforced via hooks throughout execution
 
@@ -30,6 +30,7 @@ coze/
 
 | Hook | Script | Purpose |
 |------|--------|---------|
+| PreToolUse | `allow-plugin-paths.py` | Auto-allows plugin's own files and `.claude/s/`, `.claude/docs/` |
 | PreToolUse | `enforce-write.py` | BLOCKS protected file writes (`.env.example` allowed) |
 | PreToolUse | `enforce-build-only.py` | BLOCKS dev servers, only allows build/test |
 | PostToolUse | `enforce-research.py` | Reminds to show proof after research |

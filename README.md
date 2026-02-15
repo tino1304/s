@@ -21,6 +21,7 @@ claude --plugin-dir /path/to/coze
 
 | Command | Description |
 |---------|-------------|
+| `/s:help` | Quick introduction and usage guide |
 | `/s:a` | Execute a task with project-specific skills loaded |
 | `/s:init` | Initialize S plugin for current project (detect tech stack, create skill mapping) |
 | `/s:launch` | Launch parallel sub-agents for complex tasks |
@@ -33,6 +34,7 @@ claude --plugin-dir /path/to/coze
 ### Usage
 
 ```
+/s:help
 /s:a build the auth handler
 /s:launch build the auth system with login, API routes, and database
 /s:init
@@ -83,6 +85,7 @@ Every finding must include proof:
 
 | Hook | Purpose |
 |------|---------|
+| `allow-plugin-paths.py` | Auto-allows read/write to plugin's own files and `.claude/s/`, `.claude/docs/` |
 | `enforce-write.py` | Blocks writes to protected files (`.env.example` allowed) |
 | `enforce-build-only.py` | Blocks dev servers, only allows build/test |
 | `enforce-research.py` | Reminds to show proof after research |
