@@ -21,25 +21,35 @@ claude --plugin-dir /path/to/coze
 
 | Command | Description |
 |---------|-------------|
-| `/s:go` | Execute a task with project-specific skills loaded |
+| `/s:a` | Execute a task with project-specific skills loaded |
 | `/s:init` | Initialize S plugin for current project (detect tech stack, create skill mapping) |
 | `/s:launch` | Launch parallel sub-agents for complex tasks |
 | `/s:refine` | Refine and enhance a prompt before running |
+| `/s:scan` | Analyze source code and document project structure with diagrams |
+| `/s:backlog` | Show pending TODOs from backlog |
+| `/s:backlog-add` | Add a new backlog item |
+| `/s:backlog-rm` | Remove a backlog item by number |
 
 ### Usage
 
 ```
+/s:a build the auth handler
 /s:launch build the auth system with login, API routes, and database
+/s:init
+/s:scan
+/s:backlog
+/s:backlog-add implement caching layer
+/s:backlog-rm 3
 ```
 
 ## How It Works
 
 ```
-/s:{agent} [query]
+/s:a [query]
        │
        ▼
 ┌─────────────────┐
-│ Execute Command │  ← commands/{agent}.md (has embedded workflow)
+│ Execute Command │  ← commands/a.md (loads relevant skills)
 └────────┬────────┘
          ▼
 ┌─────────────────┐
@@ -47,35 +57,19 @@ claude --plugin-dir /path/to/coze
 └─────────────────┘
 ```
 
-## Agent Communication
+## Skills
 
-Agents communicate via `.md` files in your project's `.claude/tasks/` folder:
+Skills are small, focused guideline files organized by language/framework:
 
 ```
-your-project/
-└── .claude/
-    └── tasks/
-        ├── task-001-feature.md   # Assignment + Report + Review
-        ├── task-002-bugfix.md
-        └── TRACKER.md            # Master status
+skills/dev/
+├── react/       # components, hooks, state, styling, testing
+├── nodejs/      # structure, validation, database, errors
+├── golang/      # structure, handlers, database, concurrency
+└── flutter/     # widgets, state, navigation, data
 ```
 
-### Task File Format
-
-Each task file has three sections:
-
-```markdown
-# Task: TASK-001 Add login button
-
-## Assignment
-(Tech Lead fills: objective, requirements, acceptance criteria)
-
-## Report
-(Dev agent fills: changes made, decisions, deviations)
-
-## Review
-(Tech Lead fills: approved/changes requested, feedback)
-```
+`/s:init` detects your project's tech stack and maps relevant skills. `/s:a` loads only the skills needed for each request.
 
 ## Enforced Rules
 
@@ -89,8 +83,8 @@ Every finding must include proof:
 
 | Hook | Purpose |
 |------|---------|
-| `enforce-task-files.py` | Ensures task files go to `.claude/tasks/` |
 | `enforce-write.py` | Blocks writes to protected files (`.env.example` allowed) |
+| `enforce-build-only.py` | Blocks dev servers, only allows build/test |
 | `enforce-research.py` | Reminds to show proof after research |
 
 ## Updating

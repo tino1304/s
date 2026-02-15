@@ -10,9 +10,9 @@ Coze is a Claude Code plugin that provides agent-based development workflows wit
 
 ```
 coze/
-├── commands/           # Slash commands (/s:go, /s:init, /s:launch, /s:refine)
-├── skills/             # Additional guidelines for @role prompts
-│   ├── {agent}/SKILL.md
+├── commands/           # Slash commands (/s:a, /s:init, /s:launch, /s:refine, /s:scan, /s:backlog, /s:backlog-add, /s:backlog-rm)
+├── skills/             # Skill guidelines per language/framework
+│   ├── dev/{lang}/*.md
 │   └── skill-index.json  # Keyword → skill mapping
 ├── rules/              # Mandatory rules (enforced by hooks)
 ├── hooks/hooks.json    # Hook configurations
@@ -22,18 +22,15 @@ coze/
 
 ## Flow
 
-**Option 1: `/s:{agent}` commands**
-1. User runs `/s:{agent} [query]` (e.g., `/s:launch build the auth system`)
-2. Command file (`commands/{agent}.md`) executes with embedded workflow
+1. User runs `/s:a [query]` or other commands (`/s:launch`, `/s:init`, `/s:refine`, `/s:scan`, `/s:backlog`)
+2. Command file (`commands/*.md`) executes with embedded workflow
 3. Rules enforced via hooks throughout execution
 
 ## Hooks (Enforced, Cannot Bypass)
 
 | Hook | Script | Purpose |
 |------|--------|---------|
-| SessionStart | `session-rules.py` | Loads mandatory rules |
 | PreToolUse | `enforce-write.py` | BLOCKS protected file writes (`.env.example` allowed) |
-| PreToolUse | `enforce-task-files.py` | Enforces task files in `.claude/tasks/` |
 | PreToolUse | `enforce-build-only.py` | BLOCKS dev servers, only allows build/test |
 | PostToolUse | `enforce-research.py` | Reminds to show proof after research |
 
@@ -47,22 +44,7 @@ Every research finding must include:
 
 Never say "probably" or "likely" without evidence. If not found, say "Not found."
 
-## Adding New Agents
+## Adding New Skills
 
-1. Create `commands/{agent}.md` with embedded workflow
-
-## Agent Communication
-
-All agents communicate via `.md` files in target project's `.claude/tasks/`:
-
-```
-.claude/tasks/
-├── task-001-feature.md   # Single file: Assignment + Report + Review
-├── task-002-bugfix.md
-└── TRACKER.md            # Master status
-```
-
-Hook `enforce-task-files.py` enforces:
-- Task files must be in `.claude/tasks/`
-- Task files must have `## Assignment`, `## Report`, `## Review` sections
-- Auto-creates `.claude/tasks/` directory
+1. Create skill file in `skills/dev/{lang}/`
+2. Add entry to `skills/skill-index.json` with keywords

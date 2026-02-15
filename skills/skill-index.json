@@ -2,87 +2,87 @@
   "skills": [
     {
       "name": "react-components",
-      "path": "dev/frontend-react/components.md",
+      "path": "dev/react/components.md",
       "keywords": ["react", "component", "tsx", "jsx", "props", "button", "form", "modal", "ui", "frontend"]
     },
     {
       "name": "react-hooks",
-      "path": "dev/frontend-react/hooks.md",
+      "path": "dev/react/hooks.md",
       "keywords": ["hook", "usestate", "useeffect", "usecallback", "usememo", "useref", "custom hook"]
     },
     {
       "name": "react-state",
-      "path": "dev/frontend-react/state.md",
+      "path": "dev/react/state.md",
       "keywords": ["state", "zustand", "redux", "context", "tanstack", "query", "mutation", "useReducer"]
     },
     {
       "name": "react-styling",
-      "path": "dev/frontend-react/styling.md",
+      "path": "dev/react/styling.md",
       "keywords": ["tailwind", "css", "styled", "className", "styling", "theme", "shadcn"]
     },
     {
       "name": "react-testing",
-      "path": "dev/frontend-react/testing.md",
+      "path": "dev/react/testing.md",
       "keywords": ["test", "vitest", "jest", "testing-library", "render", "screen"]
     },
     {
       "name": "node-structure",
-      "path": "dev/backend-nodejs/structure.md",
+      "path": "dev/nodejs/structure.md",
       "keywords": ["node", "nodejs", "express", "fastify", "controller", "service", "repository", "middleware"]
     },
     {
       "name": "node-validation",
-      "path": "dev/backend-nodejs/validation.md",
+      "path": "dev/nodejs/validation.md",
       "keywords": ["zod", "validation", "schema", "dto", "input"]
     },
     {
       "name": "node-database",
-      "path": "dev/backend-nodejs/database.md",
+      "path": "dev/nodejs/database.md",
       "keywords": ["prisma", "drizzle", "typeorm", "sequelize", "database", "postgres", "postgresql", "mongodb"]
     },
     {
       "name": "node-errors",
-      "path": "dev/backend-nodejs/errors.md",
+      "path": "dev/nodejs/errors.md",
       "keywords": ["error", "exception", "errorhandler", "try", "catch", "middleware"]
     },
     {
       "name": "go-structure",
-      "path": "dev/backend-golang/structure.md",
+      "path": "dev/golang/structure.md",
       "keywords": ["golang", "go", "echo", "project", "structure", "interface", "contract", "container", "di"]
     },
     {
       "name": "go-handlers",
-      "path": "dev/backend-golang/handlers.md",
+      "path": "dev/golang/handlers.md",
       "keywords": ["handler", "route", "middleware", "echo", "api", "rest", "http", "httpx", "errorx"]
     },
     {
       "name": "go-database",
-      "path": "dev/backend-golang/database.md",
+      "path": "dev/golang/database.md",
       "keywords": ["pgx", "bob", "postgres", "postgresql", "database", "query", "datastore", "omit"]
     },
     {
       "name": "go-concurrency",
-      "path": "dev/backend-golang/concurrency.md",
+      "path": "dev/golang/concurrency.md",
       "keywords": ["goroutine", "channel", "waitgroup", "errgroup", "concurrent", "parallel", "mutex"]
     },
     {
       "name": "flutter-widgets",
-      "path": "dev/mobile-flutter/widgets.md",
+      "path": "dev/flutter/widgets.md",
       "keywords": ["flutter", "widget", "stateful", "stateless", "scaffold", "dart"]
     },
     {
       "name": "flutter-state",
-      "path": "dev/mobile-flutter/state.md",
+      "path": "dev/flutter/state.md",
       "keywords": ["bloc", "cubit", "provider", "riverpod", "getx", "state management", "changenotifier"]
     },
     {
       "name": "flutter-navigation",
-      "path": "dev/mobile-flutter/navigation.md",
+      "path": "dev/flutter/navigation.md",
       "keywords": ["gorouter", "navigator", "route", "navigation", "push", "pop"]
     },
     {
       "name": "flutter-data",
-      "path": "dev/mobile-flutter/data.md",
+      "path": "dev/flutter/data.md",
       "keywords": ["dio", "http", "api", "repository", "freezed", "json", "model", "hive", "sqflite"]
     }
   ]
