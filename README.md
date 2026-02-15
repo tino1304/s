@@ -21,39 +21,15 @@ claude --plugin-dir /path/to/coze
 
 | Command | Description |
 |---------|-------------|
-| `/s:dev` | Developer - implementation tasks |
-| `/s:flutter` | Flutter Mobile Developer - cross-platform mobile apps |
-| `/s:ba` | Business Analyst - requirements & user stories |
-| `/s:design` | Designer - UI/UX design tasks |
-| `/s:tech-lead` | Tech Lead - manage dev agents, break down tasks |
+| `/s:go` | Execute a task with project-specific skills loaded |
+| `/s:init` | Initialize S plugin for current project (detect tech stack, create skill mapping) |
+| `/s:launch` | Launch parallel sub-agents for complex tasks |
 | `/s:refine` | Refine and enhance a prompt before running |
-| `/s:config` | Configure plugin settings |
-
-## Configuration
-
-Toggle auto-accept mode (skip confirmation prompts):
-
-```bash
-# Enable autonomous mode (no confirmations)
-/s:config auto-accept true
-
-# Disable autonomous mode (default, asks for confirmations)
-/s:config auto-accept false
-
-# Show current settings
-/s:config show
-```
-
-Config is stored in `.claude/s-config.json` in your project.
 
 ### Usage
 
 ```
-/s:dev fix the login button not responding on mobile
-
-/s:ba analyze requirements for user checkout flow
-
-/s:tech-lead break down the authentication feature into tasks
+/s:launch build the auth system with login, API routes, and database
 ```
 
 ## How It Works
@@ -62,10 +38,6 @@ Config is stored in `.claude/s-config.json` in your project.
 /s:{agent} [query]
        │
        ▼
-┌─────────────────┐
-│ Prompt Refinement│  ← Enhances your query, asks confirmation
-└────────┬────────┘
-         ▼
 ┌─────────────────┐
 │ Execute Command │  ← commands/{agent}.md (has embedded workflow)
 └────────┬────────┘
@@ -113,31 +85,13 @@ Every finding must include proof:
 - **Evidence:** actual quote/code
 - **Conclusion:** your interpretation
 
-### Atomic Tasks Rule (Tech Lead)
-Tasks must be small and focused:
-- One task = one responsibility
-- Max 1-3 files per task
-- If 4+ files → break it down
-
 ## Hooks
 
 | Hook | Purpose |
 |------|---------|
-| `refine-prompt.py` | Enhances prompts before execution |
 | `enforce-task-files.py` | Ensures task files go to `.claude/tasks/` |
-| `enforce-write.py` | Blocks writes to protected files |
+| `enforce-write.py` | Blocks writes to protected files (`.env.example` allowed) |
 | `enforce-research.py` | Reminds to show proof after research |
-
-## Workflow Steps
-
-Each agent has its own workflow embedded in `commands/{agent}.md`. Example (BA):
-
-1. **Enhance Prompt** - Refine user request, ask confirmation
-2. **Critical Thinking** - Identify unknowns, plan research
-3. **Spawn Research Agents** - Parallel research via sub-agents
-4. **Synthesize & Present Options** - Show findings and options
-5. **User Confirmation** - Get approval
-6. **Execute & Save** - Create deliverable
 
 ## Updating
 

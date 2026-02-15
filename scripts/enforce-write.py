@@ -25,6 +25,16 @@ def main():
     if tool_name in write_tools:
         file_path = tool_input.get("file_path", "")
 
+        # Allowed exceptions (checked before blocking)
+        allowed_patterns = [
+            ".env.example",
+        ]
+
+        # Skip protection if file matches an allowed pattern
+        file_lower = file_path.lower()
+        if any(ap in file_lower for ap in allowed_patterns):
+            sys.exit(0)
+
         # Protected paths that always need confirmation
         protected_patterns = [
             ".env",
@@ -39,7 +49,7 @@ def main():
         ]
 
         for pattern in protected_patterns:
-            if pattern.lower() in file_path.lower():
+            if pattern.lower() in file_lower:
                 # BLOCK - protected file
                 output = {
                     "hookSpecificOutput": {

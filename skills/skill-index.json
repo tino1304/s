@@ -1,93 +1,89 @@
 {
-  "roles": {
-    "dev": {
-      "name": "Developer",
-      "description": "Software development tasks",
-      "skills": [
-        {
-          "name": "frontend-react",
-          "path": "dev/frontend-react/SKILL.md",
-          "keywords": [
-            "react", "component", "hook", "usestate", "useeffect", "typescript", "tsx", "jsx",
-            "frontend", "ui", "button", "form", "modal", "tailwind", "css", "styled",
-            "zustand", "redux", "context", "tanstack", "query", "mutation",
-            "vitest", "testing-library", "jest", "test",
-            "vite", "shadcn", "radix", "framer"
-          ]
-        },
-        {
-          "name": "backend-golang",
-          "path": "dev/backend-golang/SKILL.md",
-          "keywords": [
-            "golang", "go", "gin", "echo", "fiber",
-            "goroutine", "channel", "context", "middleware",
-            "pgx", "sqlx", "bob", "gorm",
-            "grpc", "protobuf", "api", "rest",
-            "redis", "cache", "postgres", "postgresql"
-          ]
-        },
-        {
-          "name": "backend-nodejs",
-          "path": "dev/backend-nodejs/SKILL.md",
-          "keywords": [
-            "node", "nodejs", "express", "fastify", "nest", "nestjs",
-            "prisma", "drizzle", "typeorm", "sequelize",
-            "typescript", "ts", "javascript", "js",
-            "api", "rest", "graphql", "websocket",
-            "redis", "cache", "postgres", "postgresql", "mongodb"
-          ]
-        },
-        {
-          "name": "mobile-flutter",
-          "path": "dev/mobile-flutter/SKILL.md",
-          "keywords": [
-            "flutter", "dart", "mobile", "ios", "android", "cross-platform",
-            "widget", "stateful", "stateless", "scaffold", "materialapp",
-            "bloc", "cubit", "provider", "riverpod", "getx", "state management",
-            "gorouter", "navigator", "route", "navigation",
-            "dio", "http", "api", "rest",
-            "hive", "sqflite", "drift", "sharedpreferences",
-            "freezed", "json_serializable", "pubspec",
-            "platform channel", "methodchannel",
-            "firebase", "firestore", "fcm", "push notification"
-          ]
-        }
-      ]
+  "skills": [
+    {
+      "name": "react-components",
+      "path": "dev/frontend-react/components.md",
+      "keywords": ["react", "component", "tsx", "jsx", "props", "button", "form", "modal", "ui", "frontend"]
     },
-    "ba": {
-      "name": "Business Analyst",
-      "description": "Requirements, user stories, documentation",
-      "skills": [
-        {
-          "name": "business-analyst",
-          "path": "ba/SKILL.md",
-          "keywords": [
-            "requirement", "user story", "acceptance criteria", "proposal",
-            "feature", "scope", "stakeholder", "analysis", "document",
-            "specification", "use case", "workflow", "process"
-          ]
-        }
-      ]
+    {
+      "name": "react-hooks",
+      "path": "dev/frontend-react/hooks.md",
+      "keywords": ["hook", "usestate", "useeffect", "usecallback", "usememo", "useref", "custom hook"]
     },
-    "design": {
-      "name": "Designer",
-      "description": "UI/UX design, wireframes, prototypes",
-      "skills": []
+    {
+      "name": "react-state",
+      "path": "dev/frontend-react/state.md",
+      "keywords": ["state", "zustand", "redux", "context", "tanstack", "query", "mutation", "useReducer"]
     },
-    "tech-lead": {
-      "name": "Technical Lead",
-      "description": "Manage dev agents, break down requirements, code review",
-      "skills": [
-        {
-          "name": "tech-lead",
-          "path": "tech-lead/SKILL.md",
-          "keywords": [
-            "tech lead", "technical lead", "manage", "dev agent", "breakdown",
-            "task", "review", "code review", "quality", "coordinate",
-            "assign", "track", "report", "verify"
-          ]
-        }
-      ]
+    {
+      "name": "react-styling",
+      "path": "dev/frontend-react/styling.md",
+      "keywords": ["tailwind", "css", "styled", "className", "styling", "theme", "shadcn"]
+    },
+    {
+      "name": "react-testing",
+      "path": "dev/frontend-react/testing.md",
+      "keywords": ["test", "vitest", "jest", "testing-library", "render", "screen"]
+    },
+    {
+      "name": "node-structure",
+      "path": "dev/backend-nodejs/structure.md",
+      "keywords": ["node", "nodejs", "express", "fastify", "controller", "service", "repository", "middleware"]
+    },
+    {
+      "name": "node-validation",
+      "path": "dev/backend-nodejs/validation.md",
+      "keywords": ["zod", "validation", "schema", "dto", "input"]
+    },
+    {
+      "name": "node-database",
+      "path": "dev/backend-nodejs/database.md",
+      "keywords": ["prisma", "drizzle", "typeorm", "sequelize", "database", "postgres", "postgresql", "mongodb"]
+    },
+    {
+      "name": "node-errors",
+      "path": "dev/backend-nodejs/errors.md",
+      "keywords": ["error", "exception", "errorhandler", "try", "catch", "middleware"]
+    },
+    {
+      "name": "go-structure",
+      "path": "dev/backend-golang/structure.md",
+      "keywords": ["golang", "go", "echo", "project", "structure", "interface", "contract", "container", "di"]
+    },
+    {
+      "name": "go-handlers",
+      "path": "dev/backend-golang/handlers.md",
+      "keywords": ["handler", "route", "middleware", "echo", "api", "rest", "http", "httpx", "errorx"]
+    },
+    {
+      "name": "go-database",
+      "path": "dev/backend-golang/database.md",
+      "keywords": ["pgx", "bob", "postgres", "postgresql", "database", "query", "datastore", "omit"]
+    },
+    {
+      "name": "go-concurrency",
+      "path": "dev/backend-golang/concurrency.md",
+      "keywords": ["goroutine", "channel", "waitgroup", "errgroup", "concurrent", "parallel", "mutex"]
+    },
+    {
+      "name": "flutter-widgets",
+      "path": "dev/mobile-flutter/widgets.md",
+      "keywords": ["flutter", "widget", "stateful", "stateless", "scaffold", "dart"]
+    },
+    {
+      "name": "flutter-state",
+      "path": "dev/mobile-flutter/state.md",
+      "keywords": ["bloc", "cubit", "provider", "riverpod", "getx", "state management", "changenotifier"]
+    },
+    {
+      "name": "flutter-navigation",
+      "path": "dev/mobile-flutter/navigation.md",
+      "keywords": ["gorouter", "navigator", "route", "navigation", "push", "pop"]
+    },
+    {
+      "name": "flutter-data",
+      "path": "dev/mobile-flutter/data.md",
+      "keywords": ["dio", "http", "api", "repository", "freezed", "json", "model", "hive", "sqflite"]
     }
-  }
+  ]
 }

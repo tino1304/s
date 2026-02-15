@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What is Coze
 
-Coze is a Claude Code plugin that provides agent-based development workflows with enforced rules. It manages agents (BA, Dev, Flutter, Design, Tech Lead) through structured workflows, skills, and hooks.
+Coze is a Claude Code plugin that provides agent-based development workflows with enforced rules. It manages agents through structured workflows, skills, and hooks.
 
 ## Architecture
 
 ```
 coze/
-├── commands/           # Slash commands with embedded workflows (/s:ba, /s:dev, /s:tech-lead)
+├── commands/           # Slash commands (/s:go, /s:init, /s:launch, /s:refine)
 ├── skills/             # Additional guidelines for @role prompts
 │   ├── {agent}/SKILL.md
 │   └── skill-index.json  # Keyword → skill mapping
@@ -23,24 +23,16 @@ coze/
 ## Flow
 
 **Option 1: `/s:{agent}` commands**
-1. User runs `/s:{agent} [query]` (e.g., `/s:dev fix the login bug`)
-2. `refine-prompt.py` asks if user wants prompt enhancement
-3. Command file (`commands/{agent}.md`) executes with embedded workflow
-4. Rules enforced via hooks throughout execution
-
-**Option 2: `@role` prompts**
-1. User types `@dev some task` or `@ba analyze this`
-2. `discover-skills.py` loads matching skills from `skills/{role}/`
-3. Claude follows the skill guidelines
+1. User runs `/s:{agent} [query]` (e.g., `/s:launch build the auth system`)
+2. Command file (`commands/{agent}.md`) executes with embedded workflow
+3. Rules enforced via hooks throughout execution
 
 ## Hooks (Enforced, Cannot Bypass)
 
 | Hook | Script | Purpose |
 |------|--------|---------|
 | SessionStart | `session-rules.py` | Loads mandatory rules |
-| UserPromptSubmit | `refine-prompt.py` | Asks if user wants prompt enhancement |
-| UserPromptSubmit | `discover-skills.py` | Loads skills for @role prompts |
-| PreToolUse | `enforce-write.py` | BLOCKS protected file writes |
+| PreToolUse | `enforce-write.py` | BLOCKS protected file writes (`.env.example` allowed) |
 | PreToolUse | `enforce-task-files.py` | Enforces task files in `.claude/tasks/` |
 | PreToolUse | `enforce-build-only.py` | BLOCKS dev servers, only allows build/test |
 | PostToolUse | `enforce-research.py` | Reminds to show proof after research |
@@ -55,17 +47,9 @@ Every research finding must include:
 
 Never say "probably" or "likely" without evidence. If not found, say "Not found."
 
-### Atomic Tasks Rule (Tech Lead)
-Tasks must be atomic - smallest unit of work that delivers value:
-- One task = one focus (single responsibility)
-- Max 1-3 files per task
-- If 4+ files or description > 10 lines → break it down
-
 ## Adding New Agents
 
 1. Create `commands/{agent}.md` with embedded workflow
-2. (Optional) Create `skills/{agent}/SKILL.md` for @role prompts
-3. (Optional) Add to `skills/skill-index.json` for keyword matching
 
 ## Agent Communication
 

@@ -1,53 +1,7 @@
 {
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/session-rules.py"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "^@dev\\s",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py dev"
-          }
-        ]
-      },
-      {
-        "matcher": "^@ba\\s",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py ba"
-          }
-        ]
-      },
-      {
-        "matcher": "^@design\\s",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py design"
-          }
-        ]
-      },
-      {
-        "matcher": "^@tech-lead\\s",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/discover-skills.py tech-lead"
-          }
-        ]
-      }
-    ],
+    "SessionStart": [],
+    "UserPromptSubmit": [],
     "PreToolUse": [
       {
         "matcher": "Write|Edit|Bash",
@@ -55,15 +9,6 @@
           {
             "type": "command",
             "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/enforce-write.py"
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/enforce-task-files.py"
           }
         ]
       },
