@@ -1,6 +1,6 @@
 {
   "name": "s",
-  "version": "0.1.49",
+  "version": "0.2.0",
   "description": "Agent-based development workflows with enforced rules for Claude Code",
   "author": {
     "name": "Tino"

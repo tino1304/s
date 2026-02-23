@@ -4,7 +4,7 @@ description: Analyze source code and document project structure
 
 1. Warn user: "This command scans and analyzes your entire codebase file by file. It may consume a significant amount of tokens." Ask to confirm before continuing. If user declines → STOP.
 2. Check `CLAUDE.md` exists. If missing → tell user to run `/init` first, STOP.
-3. Read `.claude/s/skills.md` and `.claude/s/mapper.json` if they exist, for context.
+3. Read `.claude/s/skills/mapper.md` and `.claude/s/mapper.json` if they exist, for context.
 4. Scan the project source code. Browse file by file, understand what each file does and how files connect.
 5. Group related files into logical areas (e.g. authentication, database, routing, UI components, state management, API layer, config, etc.). Each group should represent one complete feature or concern.
 6. Create `.claude/docs/structures/` folder. Write one `.md` file per logical area. Use this format:
