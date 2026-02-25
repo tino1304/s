@@ -1,7 +1,7 @@
 {
   "name": "s",
-  "version": "0.2.0",
-  "description": "Agent-based development workflows with enforced rules for Claude Code",
+  "version": "0.2.1",
+  "description": "A Claude Code plugin for the lazy-prompt developer",
   "author": {
     "name": "Tino"
   },
